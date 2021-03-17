@@ -1,7 +1,7 @@
 all: compilar
-compilar: menu main
-		g++ menu.o main.o
-menu: menu.cpp menu.h
-		g++ -c menu.cpp
-main: main.cpp menu.h
+compilar: persona main
+		g++ persona.o main.o 
+persona: persona.h persona.cpp
+		g++ -c persona.cpp
+main: main.cpp persona.h  
 	  g++ -c main.cpp
