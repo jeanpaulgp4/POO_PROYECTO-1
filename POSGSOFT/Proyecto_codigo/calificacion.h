@@ -1,6 +1,7 @@
 #ifndef CALIFICACION_H
 #define CALIFICACION_H
 
+#include <string>
 #include <iostream>
 #include <stdlib.h>
 #include "criterio.h"
@@ -18,12 +19,13 @@ private:
 	string comentario;
 	float notaJuradoUno;
 	float notaJuradoDos;
-	float notaParcialJurados;
 	
 //metodos de la clase Calificacion
 public:
 	Calificacion();  // constructor de la clase Calificacion por defecto
-	Calificacion(Criterio, string, float, float, float);  // constructor de la clase Calificacion con los atributos
+	Calificacion(Criterio, string, float, float);  // constructor de la clase Calificacion con los atributos
+	void crearCalificacion();  // funcion que se encarga de crear una calificacion  
+	void mostrarCalificacion();  // funcion que se encarga de imprimir una calificacion
 };
 
 #endif

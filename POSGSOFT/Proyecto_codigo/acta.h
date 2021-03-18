@@ -20,7 +20,7 @@ class Acta{
 private:
 	int idActa;
 	string fecha;
-	string autor;
+	Persona autor;
 	string nombreTrabajo;
 	string tipoTrabajo;
 	string periodo;
@@ -31,13 +31,13 @@ private:
 	string estadoProyecto;
 	string comentarioAprobacion;
 	string estadoActa;
-	string procesoActa;
 	list<Calificacion> listaCalificaciones;
 
 //metodos de la clase Acta
 public:
 	Acta();  // constructor de la clase Acta por defecto
-	Acta(int, string, string, string, string, string, Persona, Persona, Persona, Persona, string, string, string, string);  // constructor de la clase Acta con los atributos
-};
+	Acta(int, string, Persona, string, string, string, Persona, Persona, Persona, Persona, string, string, string);  // constructor de la clase Acta con los atributos
+	void crearActa(int idActa);  // prototipo de la funcion que se encarga de crear un acta
+}; 
 
 #endif
