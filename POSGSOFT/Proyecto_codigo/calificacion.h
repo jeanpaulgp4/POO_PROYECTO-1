@@ -18,12 +18,12 @@ private:
 	string comentario;
 	float notaJuradoUno;
 	float notaJuradoDos;
-	float notaParcialJurados;
 	
 //metodos de la clase Calificacion
 public:
 	Calificacion();  // constructor de la clase Calificacion por defecto
-	Calificacion(Criterio, string, float, float, float);  // constructor de la clase Calificacion con los atributos
+	Calificacion(Criterio, string, float, float);  // constructor de la clase Calificacion con los atributos
+	void crearCalificacion();
 };
 
 #endif
