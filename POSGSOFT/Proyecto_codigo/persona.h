@@ -4,22 +4,26 @@
 #include <iostream>
 #include <stdlib.h>
 
+using std::string;
 using std::cin;
 using std::cout;
 using std::endl;
-using std::string;
 
-
+// creacion de la clase Persona
 class Persona{
-	private:
-		string nombre;
-		string apellido;
-		string email;
-		int id;
-		int telefono;
-	public:
-		Persona();
-		Persona(string, string, string, int, int);
+// atributos de la clase Persona
+private:
+	string nombres;
+	string apellidos;
+	string email;
+	int idPersona;
+	int telefono;
+	string rolPersona;
+
+//metodos de la clase Persona
+public:
+	Persona();  // constructor de la clase persona por defecto
+	Persona(string, string, string, int, int, string);  // constructor de la clase persona con los atributos
 };
 
 #endif

@@ -1,14 +1,15 @@
 #include "persona.h"
 
-// constructor por defecto de la clase persona
+//implementacion del constructor por defecto
 Persona::Persona(){
 }
-//constructor con los atributos de la clase persona
-Persona::Persona(string nombre, string apellido, string email, int id, int telefono){
-	this->nombre = nombre;
-	this->apellido = apellido;
-	this->email = email;
-	this->id = id;
-	this->telefono = telefono;
-}
 
+// implementacion del constructor de la clase con los atributos
+Persona::Persona(string nombres, string apellidos, string email, int idPersona, int telefono, string rolPersona){
+	this->nombres= nombres;
+	this->apellidos = apellidos;
+	this->email = email;
+	this->idPersona = idPersona;
+	this->telefono = telefono;
+	this->rolPersona = rolPersona;
+}
