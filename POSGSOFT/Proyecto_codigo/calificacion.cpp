@@ -13,6 +13,7 @@ Calificacion::Calificacion(Criterio criterio, string comentario, float notaJurad
 	this->notaJuradoDos = notaJuradoDos;
 }
 
+<<<<<<< HEAD
 // se implementa el metodo de crear una  calificacion, lo que hace es pedirle los datos al usuario
 void Calificacion::crearCalificacion(){
 	int salida = 1;  
@@ -82,3 +83,17 @@ void Calificacion::mostrarCalificacion(){
 	cout << " Nota Jurado 2: " << notaJuradoDos << endl;
 	cout << " Comentario sobre las notas: " << comentario << endl;
 }
+=======
+void Calificacion::crearCalificacion(){
+	Criterio criterio;
+
+	cout << " Digite un comentario sobre la nota dada: " << endl;
+	cin >> this->comentario;
+
+	cout << " Digite su nota: " << endl;
+	cin >> this->notaJuradoUno;
+
+	cout << " Digite su nota: " << endl;
+	cin >> this->notaJuradoDos;
+}
+>>>>>>> 9855579f61879f13fccfdd1b9b52d0c9c42e1d1f

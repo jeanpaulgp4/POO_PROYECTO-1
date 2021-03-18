@@ -11,6 +11,7 @@ Criterio::Criterio(int idCriterio, float porcentajeNota, string descripcionCrite
 	this->descripcionCriterio = descripcionCriterio;
 }
 
+<<<<<<< HEAD
 // esta funcion se encarga de pedirle los datos al usuario, y recibir el id 
 void Criterio::crearCriterio(int idCriterio){
 	this->idCriterio = idCriterio;
@@ -41,3 +42,21 @@ int Criterio::opcionCriterio(){
 	return temp;
 }
 
+=======
+// esta funcion se encarga de pedirle los datos al usuario, y recibir el id para 
+void Criterio::crearCriterio(int idCriterio){
+	this->idCriterio = idCriterio;
+
+	cout << " Digite la descripcion del criterio: " << endl;
+	getline(cin, descripcionCriterio);
+
+	cout << " Digite el porcentaje de la nota (ej. 15% = 0.15): " << endl;
+	cin >> porcentajeNota;
+}
+
+void Criterio::mostrarCriterio(){
+	cout << " Id: " << idCriterio << endl;
+	cout << " Porcentaje nota: " << porcentajeNota << endl;
+	cout << " Descripcion: " << descripcionCriterio << endl;
+}
+>>>>>>> 9855579f61879f13fccfdd1b9b52d0c9c42e1d1f
