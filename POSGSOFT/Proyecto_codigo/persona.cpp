@@ -17,21 +17,30 @@ Persona::Persona(string nombres, string apellidos, string email, int idPersona, 
 // funcion que pide los datos al usuario
 void Persona::crearPersona(){
 	int temp; // variable temporal que se utiliza para conocer la opcion del usuario a la hora de digitar su rol
-
+	fflush(stdin);
 	cout << " Digite su nombre: " << endl;
 	getline(cin, nombres);  // se utiliza el getline ya que me permite leer cadenas con espacios
+	fflush(stdin);
 
+	fflush(stdin);
 	cout << " Digite su apellido: " << endl;
 	getline(cin, apellidos);
+	fflush(stdin);
 
+	fflush(stdin);
 	cout << " Digite su email: " << endl;
 	getline(cin, email);
+	fflush(stdin);
 
+	fflush(stdin);
 	cout << " Digite su id: " << endl;
 	cin >> idPersona;
-
+	fflush(stdin);
+	
+	fflush(stdin);
 	cout << " Digite su telefono (7 digitos max): " << endl;
 	cin >> telefono;
+	fflush(stdin);
 
 	cout << " Digite su rol: \n 1. Director\n 2. Codirector\n 3. Jurado Interno\n 4 Jurado Externo\n" << endl;
 	cin >> temp;
