@@ -19,18 +19,10 @@ class Acta{
 // atributos de la clase Acta
 private:
 	int idActa;
-	string fecha;
-	Persona autor;
-	string nombreTrabajo;
-	string tipoTrabajo;
-	string periodo;
-	Persona director;
-	Persona codirector;
-	Persona juradoUno;
-	Persona juradoDos;
-	string estadoProyecto;
-	string comentarioAprobacion;
-	string estadoActa;
+	string fecha, nombreTrabajo, tipoTrabajo, periodo;
+	Persona autor, director, codirector, juradoUno, juradoDos;
+	string estadoProyecto, comentarioAprobacion, estadoActa;
+	bool estadoCodirector = false;
 	list<Calificacion> listaCalificaciones;
 
 //metodos de la clase Acta
@@ -38,8 +30,8 @@ public:
 	Acta();  // constructor de la clase Acta por defecto
 	Acta(int, string, Persona, string, string, string, Persona, Persona, Persona, Persona, string, string, string);  // constructor de la clase Acta con los atributos
 	void crearActa(int idActa);  // prototipo de la funcion que se encarga de crear un acta
-	void cerrarActa();
-	void imprimirActa();
+	void cerrarActa();  // prototipo de la funcion que se encarga de cerrar un acta
+	void mostrarActa();  // prototipo de funcion que se encarga de mostrar los datos por pantalla de una acta creada
 }; 
 
 #endif

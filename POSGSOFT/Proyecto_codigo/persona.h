@@ -24,7 +24,7 @@ private:
 public:
 	Persona();  // constructor de la clase persona por defecto
 	Persona(string, string, string, int, int, string);  // constructor de la clase persona con los atributos
-	void crearPersona();   // funcion que se encarga de pedirle los datos al usuario
+	void crearPersona(int opcionUsuario);   // funcion que se encarga de pedirle los datos al usuario
 	void mostrarPersona();  
 };
 

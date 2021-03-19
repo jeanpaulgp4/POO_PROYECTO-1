@@ -15,7 +15,9 @@ Persona::Persona(string nombres, string apellidos, string email, int idPersona, 
 }
 
 // funcion que pide los datos al usuario
-void Persona::crearPersona(){
+void Persona::crearPersona(int opcionUsuario){  // se hizo un cambio a la hora de validar que no fuesen a existir mas de un director etc, por tal razon, se le envia por parametro un entero que va a corresponder a cada uno de los tipos de persona
+	int opcionUsuarioJurado;   // esta variable se utiliza para saber que opcion escogio el usuario
+	int salida = 1;  // esta variable se utiliza para saber cuando deber permanecer en el ciclo o cuando debe salir
 	int temp; // variable temporal que se utiliza para conocer la opcion del usuario a la hora de digitar su rol
 	fflush(stdin);
 	cout << " Digite su nombre: " << endl;
@@ -41,26 +43,37 @@ void Persona::crearPersona(){
 	cout << " Digite su telefono (7 digitos max): " << endl;
 	cin >> telefono;
 	fflush(stdin);
-
-	cout << " Digite su rol: \n 1. Director\n 2. Codirector\n 3. Jurado Interno\n 4 Jurado Externo\n" << endl;
-	cin >> temp;
-
-	// se crea un condicional para conocer cual es la opcion que el usuario escogio
-	if(temp == 1){
+ 	
+ 	// en estos condicionales, dependiendo del entero que reciba por parametro, se le aplicara un rol de persona
+	if(opcionUsuario == 1){
 		rolPersona = "Director";
 	}
-	else if(temp == 2){
+	else if(opcionUsuario == 2){
 		rolPersona = "Codirector";
 	}
-	else if(temp == 3){
-		rolPersona = " JuradoInterno";
-	}
-	else if(temp == 4){
-		rolPersona = " JuradoExterno";
-	}
-
-	else if(temp == 5){
+	else if(opcionUsuario == 3){
 		rolPersona = "Estudiante";
+	}
+	else if(opcionUsuario == 4){
+		while(salida == 1){
+			cout << " Digite: \n 1. Si es jurado interno\n 2. Si es jurado externo\n" << endl;  // Cuando el usuario tenga que digitar los datos del jurado, tambien se le pregunta si el hace parte o no de la universidad
+			cin >> opcionUsuarioJurado;
+			if(opcionUsuarioJurado < 1){
+				cout << " Error!, esta no es una opcion valida" << endl;  // validacion para que el usuario no pueda escoger un numero menor a 1, ya que esta no es una opcion posible
+				salida == 1;
+			}
+			else if(opcionUsuarioJurado == 1){
+				rolPersona = "Jurado Interno";
+				salida = 0;
+			}
+			else if(opcionUsuarioJurado == 2){
+				rolPersona = "Jurado Externo";
+				salida = 0;
+			}
+			else if(opcionUsuarioJurado > 2){
+				cout << " Error!, esta no es una opcion valida" << endl;  // validacion para que el usuario no pueda escoger un numero mayor a 2, ya que esta no es una opcion posible
+			}
+		}
 	}
 }
 
@@ -68,8 +81,5 @@ void Persona::crearPersona(){
 void Persona::mostrarPersona(){
 	cout << "Nombres: " << this->nombres << endl;
 	cout << "Apellidos: " << this->apellidos << endl;
-	cout << "Email: " << this->email << endl;
-	cout << "Id: " << this->idPersona << endl;
-	cout << "Telefono: " << this->telefono << endl;
 	cout << "Rol: " << this->rolPersona << endl;
 }

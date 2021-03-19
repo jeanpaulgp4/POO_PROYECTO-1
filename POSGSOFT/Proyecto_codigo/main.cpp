@@ -16,8 +16,7 @@ int main(){
 	calificacion.mostrarCalificacion();*/
 	Acta acta;
 	acta.crearActa(0);
-	acta.cerrarActa();
-	acta.imprimirActa();
+	acta.mostrarActa();
 
     return 0;
 }
