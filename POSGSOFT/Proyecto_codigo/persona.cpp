@@ -83,3 +83,31 @@ void Persona::mostrarPersona(){
 	cout << "Apellidos: " << this->apellidos << endl;
 	cout << "Rol: " << this->rolPersona << endl;
 }
+
+
+void Persona::setNombres( string nombres ){
+    this->nombres = nombres;
+    return;
+}
+
+string Persona::getNombres(){
+    return nombres;
+}
+
+void Persona::setApellidos( string apellidos ){
+    this->apellidos = apellidos;
+    return;
+}
+
+string Persona::getApellidos(){
+    return apellidos;
+}
+
+void Persona::setRolPersona( string rolPersona ){
+    this->rolPersona = rolPersona;
+    return;
+}
+
+string Persona::getRolPersona(){
+    return rolPersona;
+}

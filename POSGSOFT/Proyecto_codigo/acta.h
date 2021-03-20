@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <fstream>
 #include "persona.h"
 #include "calificacion.h"
 #include <list>
@@ -35,6 +36,7 @@ public:
 	void agregarCalificaciones(); // prototipo de funcion que se encarga de agregar las calificaciones a una acta
 	void mostrarCalificaciones(); // prototipo de funcion que se encarga de mostrar por pantalla las calificaciones
 	void calcularNotaFinal(); // prototipo de funcion que se encarga de calcular la nota final del proyecto
+	void crearTxtActaCerrada(); //Valida si el estado acta es cerrado para asi crear el txt
 }; 
 
 #endif
