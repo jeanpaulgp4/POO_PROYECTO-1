@@ -3,11 +3,9 @@
 
 #include <iostream>
 #include <stdlib.h>
-#include <fstream>
 #include "persona.h"
 #include "calificacion.h"
 #include <list>
-
 
 using std::list;
 using std::string;
@@ -34,7 +32,9 @@ public:
 	void crearActa(int idActa);  // prototipo de la funcion que se encarga de crear un acta
 	void cerrarActa();  // prototipo de la funcion que se encarga de cerrar un acta
 	void mostrarActa();  // prototipo de funcion que se encarga de mostrar los datos por pantalla de una acta creada
-	void crearTxtActaCerrada(); //Valida si el estado acta es cerrado para asi crear el txt
+	void agregarCalificaciones(); // prototipo de funcion que se encarga de agregar las calificaciones a una acta
+	void mostrarCalificaciones(); // prototipo de funcion que se encarga de mostrar por pantalla las calificaciones
+	void calcularNotaFinal(); // prototipo de funcion que se encarga de calcular la nota final del proyecto
 }; 
 
 #endif

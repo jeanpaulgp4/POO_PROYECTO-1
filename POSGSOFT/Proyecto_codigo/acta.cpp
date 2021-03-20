@@ -107,7 +107,38 @@ void Acta::crearActa(int idActa){
  
 	estadoActa = "Abierto";  // se inicializa en estado "Abierto", ya que es el unico estado que me permite modificar el acta
 
+}
 
+// funcion que se encarga de crear las calificaciones y las almacena en una lista
+void Acta::agregarCalificaciones(){
+	Calificacion calificacion;
+
+	if(listaCalificaciones.size() == 8){
+		cout << " Error!, ya estan todas las calificaciones" << endl;
+	}
+	
+	while( listaCalificaciones.size() < 8 ){
+		calificacion.crearCalificacion( listaCalificaciones.size() );
+		listaCalificaciones.push_back( calificacion );
+	}
+}
+
+void Acta::mostrarCalificaciones(){
+	list<Calificacion>::iterator it;
+	for( it = listaCalificaciones.begin(); it != listaCalificaciones.end(); it++ ){
+		it->mostrarCalificacion();
+	}
+}
+
+void Acta::calcularNotaFinal(){
+	list<Calificacion>::iterator it2;
+	float notaFinal = 0, porcentajeNota, sumatoriaNotas = 0, multiplicacionNotas = 0;
+	for( it2 = listaCalificaciones.begin(); it2 != listaCalificaciones.end(); it2++ ){
+		sumatoriaNotas = ( it2->getNotaJuradoUno() + it2->getNotaJuradoDos() );
+		multiplicacionNotas += ( sumatoriaNotas * it2->getPorcentajeNotaCriterio() );
+	}
+	notaFinal = multiplicacionNotas/2;
+	cout << " Nota final: " << notaFinal << endl;
 }
 
 void Acta::cerrarActa(){
@@ -153,74 +184,6 @@ void Acta::mostrarActa(){
 	cout << " ===========================================" << endl;
 	cout << " Estado acta: " << estadoActa << endl;
 
-}
-
-void Acta::crearTxtActaCerrada(){  //crea el txt de acta
-	string nombres, apellidos, rol;
-	if(estadoActa=="Cerrado"){  //valida si el estado del acta esta cerrada para hacer el txt 
-		std::ofstream File;
-  		File.open("Acta.txt");
-		File << " No. Acta: " << idActa << endl;
-		File << " ===========================================" << endl;
-		File << " Fecha: " << fecha << endl;
-		File << " ===========================================" << endl;
-		nombres = autor.getNombres();
-		File << " Autor: " << nombres << endl;;
-		File << " ===========================================" << endl;
-		File << " Nombre trabajo: " << nombreTrabajo << endl;
-		File << " ===========================================" << endl;
-		File << " Tipo trabajo: " << tipoTrabajo << endl;
-		File << " ===========================================" << endl;
-		File << " Periodo: " << periodo << endl;
-		File << " ===========================================" << endl;
-		File << " Informacion Director: " << endl;
-		nombres = director.getNombres();
-		File << " Nombres: " << nombres << endl;
-		apellidos = director.getApellidos();
-		File << " Apellidos: " << apellidos << endl;
-		rol = director.getRolPersona();
-		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
-		if( estadoCodirector ){
-			File << " Informacion Codirector: " << endl;
-			nombres = codirector.getNombres();
-			File << " Nombres: " << nombres << endl;
-			apellidos = codirector.getApellidos();
-			File << " Apellidos: " << apellidos << endl;
-			rol = codirector.getRolPersona();
-			File << " Rol: " << rol << endl;
-		}
-		else{
-			cout << " No hay codirector en este proyecto." << endl;
-		}
-		File << " ===========================================" << endl;
-		File << "  Informacion Jurado Uno: " << endl;
-		nombres = juradoUno.getNombres();
-		File << " Nombres: " << nombres << endl;
-		apellidos = juradoUno.getApellidos();
-		File << " Apellidos: " << apellidos << endl;
-		rol = juradoUno.getRolPersona();
-		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
-		File << " Informacion Jurado Dos: " << endl;
-		nombres = juradoDos.getNombres();
-		File << " Nombres: " << nombres << endl;
-		apellidos = juradoDos.getApellidos();
-		File << " Apellidos: " << apellidos << endl;
-		rol = juradoDos.getRolPersona();
-		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
-		File << " Estado Proyecto: " << estadoProyecto << endl;
-		File << " ===========================================" << endl;
-		File << " Comentarios de aprobacion: " << comentarioAprobacion << endl;
-		File << " ===========================================" << endl;
-		File << " Estado acta: " << estadoActa << endl;
-  		File.close();
-	}
-	else{
-		cout << "El acta no esta cerrada: " << endl;
-	}
-	return ;
 }
 
 

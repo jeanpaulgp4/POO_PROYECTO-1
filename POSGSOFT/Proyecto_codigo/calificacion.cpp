@@ -6,73 +6,33 @@ Calificacion::Calificacion(){
 }
 
 //implementacion del constructor con los atributos de la clase Calificacion
-Calificacion::Calificacion(Criterio criterio, string comentario, float notaJuradoUno, float notaJuradoDos){
+Calificacion::Calificacion(Criterio criterio, string comentario, string comentario2, float notaJuradoUno, float notaJuradoDos){
 	this->criterio = criterio;
 	this->comentario = comentario;
+	this->comentario2 = comentario2;
 	this->notaJuradoUno = notaJuradoUno;
 	this->notaJuradoDos = notaJuradoDos;
 }
 
 // se implementa el metodo de crear una  calificacion, lo que hace es pedirle los datos al usuario
-void Calificacion::crearCalificacion(){
-	int salida = 1;  
-	// este ciclo while, sirve para pedirle al usuario el numero del criterio que quier crear, y como unicamente son 8 posibles criterios, entonces no pueden digitar numeros ni menores a 0 ni mayores a 7
-	while(salida == 1){
-
-		int temp2 = criterio.opcionCriterio();
-
-		if(temp2 < 0){
-			cout << " Error!, no puede crear un criterio con numeros negativos." << endl;   // valida que el numero de criterio no sea menor a 0
-			salida = 1;
-		}
-		else if(temp2 == 0){
-			criterio.crearCriterio(0);  // el id del criterio en este caso se saca del numero de criterio que el usuario escogio, por eso se hace el llamado al metodo con el # que el usuario escogio
-			salida = 0;
-		}
-		else if(temp2 == 1){
-			criterio.crearCriterio(1);
-			salida = 0;
-		}
-		else if(temp2 == 2){
-			criterio.crearCriterio(2);
-			salida = 0;
-		}
-		else if(temp2 == 3){
-			criterio.crearCriterio(3);
-			salida = 0;
-		}
-		else if(temp2 == 4){
-			criterio.crearCriterio(4);
-			salida = 0;
-		}
-		else if(temp2 == 5){
-			criterio.crearCriterio(5);
-			salida = 0;
-		}
-		else if(temp2 == 6){
-			criterio.crearCriterio(6);
-			salida = 0;
-		}
-		else if(temp2 == 7){
-			criterio.crearCriterio(7);
-			salida = 0;
-		}
-		else if(temp2 > 7){
-			cout << " Error!, no se puede crear mas de 8 criterios" << endl;  // valida que el numero de criterio no sea mayor a 7
-			salida = 1;
-		}
-	}
-
-	cout << " Digite un comentario sobre la nota dada: " << endl;
-	fflush(stdin);
-	getline(cin, this->comentario);  //  guarda los comentarios que se hagan sobre las notas
-	fflush(stdin);
+void Calificacion::crearCalificacion(int idCalificacion){
+	criterio.crearCriterio(idCalificacion);
 
 	cout << " Digite la nota 1: " << endl;
 	cin >> this->notaJuradoUno;
 
 	cout << " Digite la nota 2: " << endl;
 	cin >> this->notaJuradoDos;
+
+	cout << " Comentario del jurado 1: " << endl;
+	fflush(stdin);
+	getline(cin, this->comentario);  //  guarda los comentarios del jurado 1 que se hagan sobre las nota
+	fflush(stdin);
+
+	cout << " Comentario del jurado 2: " << endl;
+	fflush(stdin);
+	getline(cin, comentario2);  // guarda los comentarios del jurado 2 que se hagan sobre la nota
+	fflush(stdin);
 }
 
 // este metodo se encarga de imprimir la calificacion
@@ -83,3 +43,17 @@ void Calificacion::mostrarCalificacion(){
 	cout << " Comentario sobre las notas: " << comentario << endl;
 }
 
+// funcion que se encarga de retornar el valor de la nota de jurado 1
+float Calificacion::getNotaJuradoUno(){
+	return notaJuradoUno;
+}
+
+// funcion que se encarga de retornar el valor de la nota de jurado 2
+float Calificacion::getNotaJuradoDos(){
+	return notaJuradoDos;
+}
+
+// funcion que se encarga de retornar el valor del porcentaje de la nota
+float Calificacion::getPorcentajeNotaCriterio(){
+	return criterio.getPorcentajeNota();
+}

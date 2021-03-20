@@ -5,9 +5,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include "criterio.h"
-#include <list>
 
-using std::list;
 using std::string;
 using std::cin;
 using std::cout;
@@ -18,17 +16,19 @@ class Calificacion{
 // atributos de la clase Calificacion
 private:
 	Criterio criterio;
-	string comentario;
+	string comentario, comentario2;
 	float notaJuradoUno;
 	float notaJuradoDos;
-	
 	
 //metodos de la clase Calificacion
 public:
 	Calificacion();  // constructor de la clase Calificacion por defecto
-	Calificacion(Criterio, string, float, float);  // constructor de la clase Calificacion con los atributos
-	void crearCalificacion();  // funcion que se encarga de crear una calificacion  
+	Calificacion(Criterio, string, string, float, float);  // constructor de la clase Calificacion con los atributos
+	void crearCalificacion(int idCalificacion);  // funcion que se encarga de crear una calificacion  
 	void mostrarCalificacion();  // funcion que se encarga de imprimir una calificacion
+	float getNotaJuradoUno();  // prototipo de funcion que se encarga de retornar el valor 
+	float getNotaJuradoDos();  // prototipo de funcion que se encarga de retornar el valor
+	float getPorcentajeNotaCriterio(); // prototipo de funcion que se encarga de retornar el valor del porcentaje que se utiliza en los criterios
 };
 
 #endif

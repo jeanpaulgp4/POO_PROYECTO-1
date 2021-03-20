@@ -32,12 +32,9 @@ void Criterio::mostrarCriterio(){
 	cout << " Porcentaje nota: " << porcentajeNota << endl;
 }
 
-// este metodo se encarga de mostrarle al usuario las opciones, y retorna la opcion que el usuario escoge
-int Criterio::opcionCriterio(){
-	int temp;
-	cout << "Digite el numero de criterio que quiere crear: \n 0. #1 \n 1. #2\n 2. #3\n 3. #4\n 4. #5 \n 5. #6\n 6. #7\n 7. #8\n" << endl;
-	cin >> temp;
-
-	return temp;
+// funcion que se encarga de retornar el valor del porcentaje de la nota
+float Criterio::getPorcentajeNota(){
+	return porcentajeNota;
 }
+
 

@@ -14,9 +14,10 @@ int main(){
 	/*Calificacion calificacion;  // se crea un objeto de tipo Calificacion (esto es para motivos de prueba)
 	calificacion.crearCalificacion();
 	calificacion.mostrarCalificacion();*/
-	Acta acta1;
-	acta1.crearActa(1);
-	acta1.cerrarActa();
-	acta1.crearTxtActaCerrada();
+	Acta acta;
+	acta.agregarCalificaciones();
+	acta.mostrarCalificaciones();
+	acta.calcularNotaFinal();
+
     return 0;
 }
