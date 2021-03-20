@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <fstream>
 
 using std::string;
 using std::cin;
@@ -26,6 +27,12 @@ public:
 	Persona(string, string, string, int, int, string);  // constructor de la clase persona con los atributos
 	void crearPersona(int opcionUsuario);   // funcion que se encarga de pedirle los datos al usuario
 	void mostrarPersona();  
+	string getNombres();
+	void setNombres(string nombres);
+	string getApellidos();
+	void setApellidos(string apellidos);
+	string getRolPersona();
+	void setRolPersona(string rolPersona);
 };
 
 #endif

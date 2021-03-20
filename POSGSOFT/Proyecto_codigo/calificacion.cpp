@@ -82,3 +82,4 @@ void Calificacion::mostrarCalificacion(){
 	cout << " Nota Jurado 2: " << notaJuradoDos << endl;
 	cout << " Comentario sobre las notas: " << comentario << endl;
 }
+

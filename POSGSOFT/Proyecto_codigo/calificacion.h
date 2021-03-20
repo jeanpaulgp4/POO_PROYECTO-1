@@ -5,7 +5,9 @@
 #include <iostream>
 #include <stdlib.h>
 #include "criterio.h"
+#include <list>
 
+using std::list;
 using std::string;
 using std::cin;
 using std::cout;
@@ -19,6 +21,7 @@ private:
 	string comentario;
 	float notaJuradoUno;
 	float notaJuradoDos;
+	
 	
 //metodos de la clase Calificacion
 public:
