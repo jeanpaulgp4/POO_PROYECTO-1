@@ -1,19 +1,27 @@
-#include <iostream>
+#ifndef MENU_H
+#define MENU_H
+
 #include "menu.h"
+#include <iostream>
+#include <stdlib.h>
+#include <string>
+
+using std::string;
+using std::cin;
+using std::cout;
+using std::endl;
 
 int menu()
 {
     int opcion;
-    std::cout << "Menu del sistema de actas de grado\n"
+    cout << "Menu del sistema de actas de pos-grado\n"
               << std::endl;
-    std::cout << "1. OPC 1" << std::endl;
-    std::cout << "2. OPC 2" << std::endl;
-    std::cout << "3. OPC 3" << std::endl;
-    std::cout << "4. OPC 4" << std::endl;
-    std::cout << "5. OPC 5" << std::endl;
-    std::cout << "0. Salir\n"
-              << std::endl;
-    std::cout << "Digita el numero: ";
-    std::cin >> opcion;
+    cout << "1. Crear un acta" << endl;
+    cout << "2. Modificar un acta" << endl;
+    cout << "3. Cerrar acta" << endl;
+    cout << "4. Eliminar acta" << endl;
+    cin >> opcion;
     return opcion;
 } 
+
+#endif

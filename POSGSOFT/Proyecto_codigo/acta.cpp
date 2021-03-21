@@ -5,7 +5,7 @@ Acta::Acta(){
 }
 
 // implementacion del constructor con los atributos de la clase Acta
-Acta::Acta(int idActa, string fecha, Persona autor, string nombreTrabajo, string tipoTrabajo, string periodo, Persona director, Persona codirector, Persona juradoUno, Persona juradoDos, string estadoProyecto, string comentarioAprobacion, string estadoActa){
+Acta::Acta(int idActa, string fecha, Persona autor, string nombreTrabajo, string tipoTrabajo, string periodo, Persona director, Persona codirector, Persona juradoUno, Persona juradoDos, string estadoProyecto, string comentarioAprobacion, string estadoActa, float notaFinal){
 	this->idActa = idActa;
 	this->fecha = fecha;
 	this->autor = autor;
@@ -16,14 +16,13 @@ Acta::Acta(int idActa, string fecha, Persona autor, string nombreTrabajo, string
 	this->codirector = codirector;
 	this->juradoUno = juradoUno;
 	this->juradoDos = juradoDos;
-	this->estadoProyecto = estadoProyecto;
-	this->comentarioAprobacion = comentarioAprobacion;
 	this->estadoActa = estadoActa;
 }
 
 
 // metodo que se encarga de crear el acta, es decir, le pide los datos al usuario e inicializa algunos valores.
 void Acta::crearActa(int idActa){
+	Acta acta;
 	int opcionUsuarioCodirector, opcionUsuario;  // opcionUsuarioCodirector se utiliza para saber si el proyecto tiene o no codirector || opcionUsuario se utiliza para conocer cual es la opcion que el usuario va a escoger al escoger el tipo de trabajo
 	this->idActa = idActa;
 	int salida = 1, salida2 = 1;  // estas variables se utilizan para saber cuando permancer en los ciclos y cuando debe salirse
@@ -72,7 +71,7 @@ void Acta::crearActa(int idActa){
 
 	cout << " Digite la informacion del codirector: ";  // se le pregunta al usuario si el proyecto cuenta con un codirector o no
 	while(salida == 1){
-		cout << " ¿Hay codirector?\n 1. SI\n 2. NO " << endl;
+		cout << " Hay codirector?\n 1. SI\n 2. NO " << endl;
 		cin >> opcionUsuarioCodirector;
 
 		if(opcionUsuarioCodirector < 1){
@@ -106,15 +105,15 @@ void Acta::crearActa(int idActa){
 	comentarioAprobacion = "";   //  se inicializa en vacio, ya que por el momento no es posibe saber el estado del proyecto, solo se sabra hasta que se calcule la nota final
  
 	estadoActa = "Abierto";  // se inicializa en estado "Abierto", ya que es el unico estado que me permite modificar el acta
-
 }
+
 
 // funcion que se encarga de crear las calificaciones y las almacena en una lista
 void Acta::agregarCalificaciones(){
 	Calificacion calificacion;
 
 	if(listaCalificaciones.size() == 8){
-		cout << " Error!, ya estan todas las calificaciones" << endl;
+		cout << " Error!, ya estan todas las calificaciones" << endl;  // valida que no se vayan a agregar mas de 8 calificaciones
 	}
 	
 	while( listaCalificaciones.size() < 8 ){
@@ -123,6 +122,7 @@ void Acta::agregarCalificaciones(){
 	}
 }
 
+// esta funcion se encarga de recorrer la lista de calificaciones y las muestra por pantalla
 void Acta::mostrarCalificaciones(){
 	list<Calificacion>::iterator it;
 	for( it = listaCalificaciones.begin(); it != listaCalificaciones.end(); it++ ){
@@ -130,20 +130,58 @@ void Acta::mostrarCalificaciones(){
 	}
 }
 
+// esta funcion se encarga de recorrer la lista de calificaciones, y calcula la nota final de todas las calificaciones dadas
 void Acta::calcularNotaFinal(){
 	list<Calificacion>::iterator it2;
-	float notaFinal = 0, porcentajeNota, sumatoriaNotas = 0, multiplicacionNotas = 0;
+	float sumatoriaNotas = 0, multiplicacionNotas = 0;
 	for( it2 = listaCalificaciones.begin(); it2 != listaCalificaciones.end(); it2++ ){
 		sumatoriaNotas = ( it2->getNotaJuradoUno() + it2->getNotaJuradoDos() );
 		multiplicacionNotas += ( sumatoriaNotas * it2->getPorcentajeNotaCriterio() );
 	}
 	notaFinal = multiplicacionNotas/2;
-	cout << " Nota final: " << notaFinal << endl;
 }
 
+// esta funcion se encarga de actualizar el comentario de aprobacion en caso tal de que se requiera
+void Acta::setComentarioAprobacion(){
+	string comentarioAprobacion;
+	cout << " Digite el comentario de aprobacion: " << endl;
+	fflush(stdin);
+	getline(cin, comentarioAprobacion);
+	fflush(stdin);
+	this->comentarioAprobacion = comentarioAprobacion;
+}
+
+// esta funcion se encarga de actualizar el estado del proyecto una vez calculada la nota final
+void Acta::setEstadoProyecto(int indiceEstadoProyecto){
+	if( indiceEstadoProyecto == 1 ){
+		estadoProyecto = "Pendiente";
+	}
+	else if( indiceEstadoProyecto == 2 ){
+		estadoProyecto = "Aprobado";
+	}
+	else if( indiceEstadoProyecto == 3 ){
+		estadoProyecto = "Reprobado";
+	}
+}
+
+// esta funcion se encarga de retornar el estado del acta
+string Acta::getEstadoActa(){
+	return estadoActa;
+}
+
+// esta funcion se encarga de cerrar el acta, es decir, actualiza el estado del acta por cerrado
 void Acta::cerrarActa(){
 	estadoActa = "Cerrado";
-	return;
+}
+
+// esta funcion se encarga de retornar la nota final
+float Acta::getNotaFinal(){
+	return notaFinal;
+}
+
+// esta funcion se encarga de retornar el id del acta
+int Acta::getIdActa(){
+	return idActa;
 }
 
 // este metodo se encarga de imprimir el acta
@@ -184,75 +222,6 @@ void Acta::mostrarActa(){
 	cout << " ===========================================" << endl;
 	cout << " Estado acta: " << estadoActa << endl;
 
-}
-
-
-void Acta::crearTxtActaCerrada(){  //crea el txt de acta
-	string nombres, apellidos, rol;
-	if(estadoActa=="Cerrado"){  //valida si el estado del acta esta cerrada para hacer el txt 
-		std::ofstream File;
-  		File.open("Acta.txt");
-		File << " No. Acta: " << idActa << endl;
-		File << " ===========================================" << endl;
-		File << " Fecha: " << fecha << endl;
-		File << " ===========================================" << endl;
-		nombres = autor.getNombres();
-		File << " Autor: " << nombres << endl;;
-		File << " ===========================================" << endl;
-		File << " Nombre trabajo: " << nombreTrabajo << endl;
-		File << " ===========================================" << endl;
-		File << " Tipo trabajo: " << tipoTrabajo << endl;
-		File << " ===========================================" << endl;
-		File << " Periodo: " << periodo << endl;
-		File << " ===========================================" << endl;
-		File << " Informacion Director: " << endl;
-		nombres = director.getNombres();
-		File << " Nombres: " << nombres << endl;
-		apellidos = director.getApellidos();
-		File << " Apellidos: " << apellidos << endl;
-		rol = director.getRolPersona();
-		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
-		if( estadoCodirector ){
-			File << " Informacion Codirector: " << endl;
-			nombres = codirector.getNombres();
-			File << " Nombres: " << nombres << endl;
-			apellidos = codirector.getApellidos();
-			File << " Apellidos: " << apellidos << endl;
-			rol = codirector.getRolPersona();
-			File << " Rol: " << rol << endl;
-		}
-		else{
-			cout << " No hay codirector en este proyecto." << endl;
-		}
-		File << " ===========================================" << endl;
-		File << "  Informacion Jurado Uno: " << endl;
-		nombres = juradoUno.getNombres();
-		File << " Nombres: " << nombres << endl;
-		apellidos = juradoUno.getApellidos();
-		File << " Apellidos: " << apellidos << endl;
-		rol = juradoUno.getRolPersona();
-		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
-		File << " Informacion Jurado Dos: " << endl;
-		nombres = juradoDos.getNombres();
-		File << " Nombres: " << nombres << endl;
-		apellidos = juradoDos.getApellidos();
-		File << " Apellidos: " << apellidos << endl;
-		rol = juradoDos.getRolPersona();
-		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
-		File << " Estado Proyecto: " << estadoProyecto << endl;
-		File << " ===========================================" << endl;
-		File << " Comentarios de aprobacion: " << comentarioAprobacion << endl;
-		File << " ===========================================" << endl;
-		File << " Estado acta: " << estadoActa << endl;
-  		File.close();
-	}
-	else{
-		cout << "El acta no esta cerrada: " << endl;
-	}
-	return ;
 }
 
 
