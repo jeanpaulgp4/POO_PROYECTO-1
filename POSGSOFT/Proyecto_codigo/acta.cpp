@@ -169,6 +169,41 @@ string Acta::getEstadoActa(){
 	return estadoActa;
 }
 
+string Acta::getTipoTrabajo(){
+	return tipoTrabajo;
+}
+
+string Acta::getNombreDirector(){
+	return director.getNombres();
+}
+
+string Acta::getNombrejuradoUno(){
+	return juradoUno.getNombres();
+}
+
+string Acta::getNombrejuradoDos(){
+	return juradoDos.getNombres();
+}
+int Acta::getIdjuradoUno(){
+	return juradoUno.getIdPersona();
+}
+
+int Acta::getIdjuradoDos(){
+	return juradoDos.getIdPersona();
+}
+string Acta::getEstadoProyecto(){
+	return estadoProyecto;
+}
+
+
+string Acta::getRoljuradoUno(){
+	return juradoUno.getRolPersona();
+}
+
+string Acta::getRoljuradoDos(){
+	return juradoDos.getRolPersona();
+}
+
 // esta funcion se encarga de cerrar el acta, es decir, actualiza el estado del acta por cerrado
 void Acta::cerrarActa(){
 	estadoActa = "Cerrado";
@@ -178,10 +213,24 @@ void Acta::cerrarActa(){
 float Acta::getNotaFinal(){
 	return notaFinal;
 }
+// esta funcion se encarga de retornar el comentario adicional
+string Acta::getcomentarioAprobacion(){
+	return comentarioAprobacion;
+}
 
 // esta funcion se encarga de retornar el id del acta
 int Acta::getIdActa(){
 	return idActa;
+}
+
+
+void Acta::mostrarCriteriosEvaluacion(){
+	list<Calificacion>::iterator itNota;
+	for( itNota = listaCalificaciones.begin(); itNota != listaCalificaciones.end(); itNota++ ){
+		cout << " Id criterio: " << itNota->getIdCriterio() << endl;
+		cout << " Descripcion: " << itNota->getDescripcionCriterio() << endl;
+		cout << " Porcentaje nota: " << itNota->getPorcentajeNotaCriterio() << endl;
+	}
 }
 
 // este metodo se encarga de imprimir el acta
@@ -226,3 +275,83 @@ void Acta::mostrarActa(){
 
 
 
+void Acta::crearTxtActaCerrada(){  //crea el txt de acta
+	string nombres, apellidos, rol;
+	if(estadoActa=="Cerrado"){  //valida si el estado del acta esta cerrada para hacer el txt 
+		std::ofstream File;
+  		File.open("Acta.txt");
+		File << " No. Acta: " << idActa << endl;
+		File << " ===========================================" << endl;
+		File << " Fecha: " << fecha << endl;
+		File << " ===========================================" << endl;
+		nombres = autor.getNombres();
+		File << " Autor: " << nombres << endl;;
+		File << " ===========================================" << endl;
+		File << " Nombre trabajo: " << nombreTrabajo << endl;
+		File << " ===========================================" << endl;
+		File << " Tipo trabajo: " << tipoTrabajo << endl;
+		File << " ===========================================" << endl;
+		File << " Periodo: " << periodo << endl;
+		File << " ===========================================" << endl;
+		File << " Informacion Director: " << endl;
+		nombres = director.getNombres();
+		File << " Nombres: " << nombres << endl;
+		apellidos = director.getApellidos();
+		File << " Apellidos: " << apellidos << endl;
+		rol = director.getRolPersona();
+		File << " Rol: " << rol << endl;
+		File << " ===========================================" << endl;
+		if( estadoCodirector ){
+			File << " Informacion Codirector: " << endl;
+			nombres = codirector.getNombres();
+			File << " Nombres: " << nombres << endl;
+			apellidos = codirector.getApellidos();
+			File << " Apellidos: " << apellidos << endl;
+			rol = codirector.getRolPersona();
+			File << " Rol: " << rol << endl;
+		}
+		else{
+			cout << " No hay codirector en este proyecto." << endl;
+		}
+		File << " ===========================================" << endl;
+		File << "  Informacion Jurado Uno: " << endl;
+		nombres = juradoUno.getNombres();
+		File << " Nombres: " << nombres << endl;
+		apellidos = juradoUno.getApellidos();
+		File << " Apellidos: " << apellidos << endl;
+		rol = juradoUno.getRolPersona();
+		File << " Rol: " << rol << endl;
+		File << " ===========================================" << endl;
+		File << " Informacion Jurado Dos: " << endl;
+		nombres = juradoDos.getNombres();
+		File << " Nombres: " << nombres << endl;
+		apellidos = juradoDos.getApellidos();
+		File << " Apellidos: " << apellidos << endl;
+		rol = juradoDos.getRolPersona();
+		File << " Rol: " << rol << endl;
+		File << " ===========================================" << endl;
+		File << " Estado Proyecto: " << estadoProyecto << endl;
+		File << " ===========================================" << endl;
+		File << " Comentarios de aprobacion: " << comentarioAprobacion << endl;
+		File << " ===========================================" << endl;
+		File << " Estado acta: " << estadoActa << endl;
+		File << " ===========================================" << endl;
+		for( list<Calificacion>::iterator it2 = listaCalificaciones.begin(); it2 != listaCalificaciones.end(); it2++ ){
+			File << " Id del Criterio: " << it2->getIdCriterio() << endl;
+			File << " Descripcion del criterio: " << it2->getDescripcionCriterio() << endl;
+			File << " Porcentaje del criterio: " << it2->getPorcentajeNotaCriterio() << endl;
+			File << " Nota del jurado 1 : " << it2->getNotaJuradoUno() << endl;
+			File << " Comentarios del jurado 1 : " << it2->getComentariosJurado1() << endl;
+			File << " Nota del jurado 2 : " << it2->getNotaJuradoUno() << endl;
+			File << " Comentarios del jurado 2 : " << it2->getComentariosJurado2() << endl;
+			File << " ===========================================" << endl;
+		}
+		File << " Como  resultado  de  estas  calificaciones  parciales  y  sus  ponderaciones,  la  calificación  del Trabajo  de Grado es: " << getNotaFinal() << endl;
+		File << " Observaciones adicionales: " << getcomentarioAprobacion() << endl;
+  		File.close();
+	}
+	else{
+		cout << "El acta no esta cerrada: " << endl;
+	}
+	return ;
+}

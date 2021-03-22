@@ -29,6 +29,10 @@ public:
 	float getNotaJuradoUno();  // prototipo de funcion que se encarga de retornar el valor 
 	float getNotaJuradoDos();  // prototipo de funcion que se encarga de retornar el valor
 	float getPorcentajeNotaCriterio(); // prototipo de funcion que se encarga de retornar el valor del porcentaje que se utiliza en los criterios
+	int getIdCriterio();
+	string getDescripcionCriterio();
+	string getComentariosJurado1();
+	string getComentariosJurado2();
 };
 
 #endif

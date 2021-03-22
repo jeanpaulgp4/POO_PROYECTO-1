@@ -26,6 +26,16 @@ public:
 	void eliminarActa();  // protipo de funcion que se encarga de eliminar un acta
 	void modificarActa();  // prototipo de funcion que se encarga de modificar un acta
 	void cerrarActaTotal();  // prototipo de funcion que se encarga de cerrar un acta
+	void cantTrabajosAplicado(); //Funcion que retorna la cantidad de trabajos de tipo aplicado y cuales actas con su Idacta
+	void cantTrabajosInvestigacion(); //Funcion que retorna la cantidad de trabajos de tipo investigacion y cuales actas con su Idacta
+	void cantTrabajosDirigidos(); // Funcion que retorna cantidad de trabajos dirigidos por un director con el nombre del director
+	void cantTrabajosJurado(); // Funcion que retorna cantidad de trabajos dirigidos y cuales actas con su Idacta por un jurado con su nombre 
+	void participacionJuradoActas(); //Funcion que imprime los Id y nombre de jurado sin repetir de todas las actas
+	void actasPendientes(); // Funcion que imprime los Id de las actas de estado "Pendiente"
+	void actasReprobadas(); // Funcion que imprime los Id de las actas de estado "Rechazadas o reprobadas"
+	void juradosInternos(); // Funcion que imprime el id y nombre de los jurados internos
+	void juradosExternos(); // Funcion que imprime el id y nombre de los jurados externos
+	void mostrarCriteriosActa();
 
 };
 

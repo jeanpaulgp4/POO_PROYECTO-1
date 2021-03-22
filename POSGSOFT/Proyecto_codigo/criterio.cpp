@@ -37,4 +37,12 @@ float Criterio::getPorcentajeNota(){
 	return porcentajeNota;
 }
 
+string Criterio::getDescripcionCriterio(){
+    return descripcionCriterio;
+}
+
+int Criterio::getIdCriterio(){
+    return idCriterio;
+}
+
 

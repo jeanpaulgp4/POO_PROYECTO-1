@@ -24,7 +24,11 @@ public:
 	void crearCriterio(int idCriterio);  // funcion que se encarga de pedir los datos al usuario, sobre la iformacion del criterio que se quiere crear
 	void mostrarCriterio();  // funcion que se encarga de mostrar el criterio creado
 	float getPorcentajeNota(); // prototipo de funcion que se encarga de retornar el valor del porcentaje de la nota
-	
+	string getDescripcionCriterio();
+	void setDescripcionCriterio(string DescripcionCriterio);
+	int getIdCriterio();
+	void setIdCriterio(int idCriterio);
+	void setPorcentajeCriterio(float porcentajeNota);
 };
 
 #endif

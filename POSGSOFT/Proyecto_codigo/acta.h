@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <stdlib.h>
+#include <fstream>
 #include "persona.h"
 #include "calificacion.h"
 #include <list>
@@ -43,6 +44,18 @@ public:
 	void setComentarioAprobacion();  // protipo de funcion que se encarga de agregar el comentario de aprobacion 
 	void setEstadoProyecto(int indiceEstadoProyecto);  // prototipo de funcion que se encarga de poner el estado del proyecto
 	void eliminarActa(); // prototipo de funcion que se encarga de eliminar un acta
+	void crearTxtActaCerrada(); //Valida si el estado acta es cerrado para asi crear el txt
+	string getcomentarioAprobacion();
+	string getTipoTrabajo();
+	string getNombreDirector();
+	string getNombrejuradoUno();
+	string getNombrejuradoDos();
+	int getIdjuradoUno();
+	int getIdjuradoDos();
+	string getEstadoProyecto();
+	string getRoljuradoUno();
+	string getRoljuradoDos();
+	void mostrarCriteriosEvaluacion();
 }; 
 
 #endif

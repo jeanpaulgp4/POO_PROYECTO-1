@@ -43,6 +43,7 @@ void Calificacion::mostrarCalificacion(){
 	cout << " Comentario sobre las notas: " << comentario << endl;
 }
 
+
 // funcion que se encarga de retornar el valor de la nota de jurado 1
 float Calificacion::getNotaJuradoUno(){
 	return notaJuradoUno;
@@ -56,4 +57,20 @@ float Calificacion::getNotaJuradoDos(){
 // funcion que se encarga de retornar el valor del porcentaje de la nota
 float Calificacion::getPorcentajeNotaCriterio(){
 	return criterio.getPorcentajeNota();
+}
+
+int Calificacion::getIdCriterio(){
+	return criterio.getIdCriterio();
+}
+
+string Calificacion::getDescripcionCriterio(){
+	return criterio.getDescripcionCriterio();
+}
+
+string Calificacion::getComentariosJurado1(){
+	return comentario;
+}
+
+string Calificacion::getComentariosJurado2(){
+	return comentario2;
 }
