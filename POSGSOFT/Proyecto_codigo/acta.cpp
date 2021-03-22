@@ -281,18 +281,12 @@ void Acta::crearTxtActaCerrada(){  //crea el txt de acta
 		std::ofstream File;
   		File.open("Acta.txt");
 		File << " No. Acta: " << idActa << endl;
-		File << " ===========================================" << endl;
 		File << " Fecha: " << fecha << endl;
-		File << " ===========================================" << endl;
 		nombres = autor.getNombres();
 		File << " Autor: " << nombres << endl;;
-		File << " ===========================================" << endl;
 		File << " Nombre trabajo: " << nombreTrabajo << endl;
-		File << " ===========================================" << endl;
 		File << " Tipo trabajo: " << tipoTrabajo << endl;
-		File << " ===========================================" << endl;
 		File << " Periodo: " << periodo << endl;
-		File << " ===========================================" << endl;
 		File << " Informacion Director: " << endl;
 		nombres = director.getNombres();
 		File << " Nombres: " << nombres << endl;
@@ -300,7 +294,6 @@ void Acta::crearTxtActaCerrada(){  //crea el txt de acta
 		File << " Apellidos: " << apellidos << endl;
 		rol = director.getRolPersona();
 		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
 		if( estadoCodirector ){
 			File << " Informacion Codirector: " << endl;
 			nombres = codirector.getNombres();
@@ -313,7 +306,6 @@ void Acta::crearTxtActaCerrada(){  //crea el txt de acta
 		else{
 			cout << " No hay codirector en este proyecto." << endl;
 		}
-		File << " ===========================================" << endl;
 		File << "  Informacion Jurado Uno: " << endl;
 		nombres = juradoUno.getNombres();
 		File << " Nombres: " << nombres << endl;
@@ -321,7 +313,6 @@ void Acta::crearTxtActaCerrada(){  //crea el txt de acta
 		File << " Apellidos: " << apellidos << endl;
 		rol = juradoUno.getRolPersona();
 		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
 		File << " Informacion Jurado Dos: " << endl;
 		nombres = juradoDos.getNombres();
 		File << " Nombres: " << nombres << endl;
@@ -329,13 +320,9 @@ void Acta::crearTxtActaCerrada(){  //crea el txt de acta
 		File << " Apellidos: " << apellidos << endl;
 		rol = juradoDos.getRolPersona();
 		File << " Rol: " << rol << endl;
-		File << " ===========================================" << endl;
 		File << " Estado Proyecto: " << estadoProyecto << endl;
-		File << " ===========================================" << endl;
 		File << " Comentarios de aprobacion: " << comentarioAprobacion << endl;
-		File << " ===========================================" << endl;
 		File << " Estado acta: " << estadoActa << endl;
-		File << " ===========================================" << endl;
 		for( list<Calificacion>::iterator it2 = listaCalificaciones.begin(); it2 != listaCalificaciones.end(); it2++ ){
 			File << " Id del Criterio: " << it2->getIdCriterio() << endl;
 			File << " Descripcion del criterio: " << it2->getDescripcionCriterio() << endl;
@@ -344,7 +331,6 @@ void Acta::crearTxtActaCerrada(){  //crea el txt de acta
 			File << " Comentarios del jurado 1 : " << it2->getComentariosJurado1() << endl;
 			File << " Nota del jurado 2 : " << it2->getNotaJuradoUno() << endl;
 			File << " Comentarios del jurado 2 : " << it2->getComentariosJurado2() << endl;
-			File << " ===========================================" << endl;
 		}
 		File << " Como  resultado  de  estas  calificaciones  parciales  y  sus  ponderaciones,  la  calificación  del Trabajo  de Grado es: " << getNotaFinal() << endl;
 		File << " Observaciones adicionales: " << getcomentarioAprobacion() << endl;

@@ -35,7 +35,7 @@ public:
 	void actasReprobadas(); // Funcion que imprime los Id de las actas de estado "Rechazadas o reprobadas"
 	void juradosInternos(); // Funcion que imprime el id y nombre de los jurados internos
 	void juradosExternos(); // Funcion que imprime el id y nombre de los jurados externos
-	void mostrarCriteriosActa();
+	void mostrarCriteriosActa(); //Funcion que imprime los criterios de acta con el id del acta
 
 };
 
